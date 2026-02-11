@@ -260,7 +260,7 @@ async function loadMembers() {
         members = rows
             .filter(row => row.trim() !== "")
             .map(row => {
-                const [id, nome, rank, classe, arma, build, score,mastery] = row.split(",");
+                const [id, nome, rank, classe, arma, build, score, mastery] = row.split(",");
 
                 return {
                     id: id?.trim(),
@@ -360,6 +360,7 @@ async function loadMembers() {
 
 </body>
 </html>
+
 
 
 
