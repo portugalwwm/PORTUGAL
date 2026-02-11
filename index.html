@@ -260,7 +260,7 @@ async function loadMembers() {
         members = rows
             .filter(row => row.trim() !== "")
             .map(row => {
-                const [id, nome, rank, classe, arma, build, score] = row.split(",");
+                const [id, nome, rank, classe, arma, build, score,gearscore] = row.split(",");
 
                 return {
                     id: id?.trim(),
@@ -269,7 +269,8 @@ async function loadMembers() {
                     classe: classe?.trim(),
                     arma: arma?.trim(),
                     build: build?.trim(),
-                    score: parseInt(score?.trim()) || 0
+                    score: parseInt(score?.trim()) || 0,
+                    gearscore: gearscore.trim(),
                 };
             });
 
@@ -299,6 +300,7 @@ async function loadMembers() {
                 <li>Arma: ${m.arma}</li>
                 <li>Build: ${m.build}</li>
             </ul>
+            <span>${m.gearscore}</span>
         </a>`;
                 });
 
