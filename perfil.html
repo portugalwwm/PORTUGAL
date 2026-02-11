@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perfil do Membro | PORTUGAL</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Inter',sans-serif;
+            background: radial-gradient(circle at top,#0f172a,#05070c);
+            color: #e5e7eb
+        }
+
+        header {
+            text-align: center;
+            padding: 5rem 1.5rem
+        }
+
+        h1 {
+            font-family: 'Cinzel',serif;
+            color: #d6b15f;
+            font-size: 3rem
+        }
+
+        .card {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: linear-gradient(180deg,#0c1220,#070b18);
+            padding: 2rem;
+            border-radius: 1.5rem;
+            border: 1px solid rgba(255,255,255,.08)
+        }
+
+        .tag {
+            color: #d6b15f;
+            font-size: .85rem
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 1rem
+        }
+
+        li {
+            margin-bottom: .5rem;
+            color: #9ca3af
+        }
+
+        a {
+            color: #7c3aed;
+            text-decoration: none
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1 id="nome">Membro</h1>
+        <p class="tag" id="rank"></p>
+    </header>
+
+    <div class="card" id="perfil"></div>
+
+    <script>
+        let members = [];
+
+        async function loadMembers() {
+            try {
+                const response = await fetch("https://docs.google.com/spreadsheets/d/116Qoa8HD_iOYKIw61rdX0D6wkaoNU0cFsBAPEOGEO5U/export?format=csv");
+                const data = await response.text();
+
+                const rows = data.split("\n").slice(1); // remove cabeçalho
+
+                members = rows
+                    .filter(row => row.trim() !== "")
+                    .map(row => {
+                        const [id, nome, rank, classe, arma, build, score] = row.split(",");
+
+                        return {
+                            id: id?.trim(),
+                            nome: nome?.trim(),
+                            rank: rank?.trim(),
+                            classe: classe?.trim(),
+                            arma: arma?.trim(),
+                            build: build?.trim(),
+                            score: parseInt(score?.trim()) || 0
+                        };
+                    });
+
+                renderMembers();
+                renderRanking();
+
+            } catch (error) {
+                console.error("Erro ao carregar membros:", error);
+            }
+        }
+
+  const id=location.hash.replace('#','');
+  const m=membros[id];
+
+  if(m){
+    document.getElementById('nome').innerText=m.nome;
+    document.getElementById('rank').innerText=m.rank;
+    document.getElementById('perfil').innerHTML=`
+      <ul>
+        <li><strong>Classe:</strong> ${m.classe}</li>
+        <li><strong>Arma:</strong> ${m.arma}</li>
+        <li><strong>Build:</strong> ${m.build}</li>
+        <li><strong>Descrição:</strong> ${m.descricao}</li>
+      </ul>
+      <br />
+      <a href="index.html">← Voltar à Guild</a>`;
+  } else {
+    document.getElementById('perfil').innerText='Membro não encontrado.';
+  }
+    </script>
+
+</body>
+</html>
