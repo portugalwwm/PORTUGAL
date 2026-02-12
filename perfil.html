@@ -113,7 +113,8 @@ async function carregarPerfil() {
             classe: cols[3].trim(),
             arma: cols[4].trim(),
             build: cols[5].trim(),
-            score: cols[6].trim()
+            score: cols[6].trim(),
+            mastery: cols[7].trim()
         };
     });
 
@@ -134,6 +135,7 @@ async function carregarPerfil() {
             <p><strong>Arma:</strong> ${membro.arma}</p>
             <p><strong>Build:</strong> ${membro.build}</p>
             <p><strong>Score:</strong> ${membro.score}</p>
+            <p><strong>Mastery:</strong> ${membro.mastery}</p>
         </div>
     `;
 }
