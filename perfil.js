@@ -1,4 +1,4 @@
-const SHEET_URL = "https://docs.google.com/spreadsheets/d/116Qoa8HD_iOYKIw61rdX0D6wkaoNU0cFsBAPEOGEO5U/export?format=csv";
+const SHEET_URL = "https://docs.google.com/spreadsheets/d/1a6os1xPZSnQoVf7befYc6OhWWXMeznaX/export?format=csv";
 
 async function carregarPerfil() {
     const params = new URLSearchParams(window.location.search);
