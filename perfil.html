@@ -114,7 +114,8 @@ async function carregarPerfil() {
         };
     });
 
-    const membro = members.find(m => m.id === id);
+    const membro = members.find(m => m.id.trim().toLowerCase() === id.trim().toLowerCase());
+
 
     if (!membro) {
         document.getElementById("perfil-content").innerHTML = "<p>Membro não encontrado.</p>";
