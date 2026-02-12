@@ -136,7 +136,7 @@ async function carregarPerfil() {
     const rows = text.trim().split("\n").slice(1);
 
     const members = rows.map(row => {
-    const cols = row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g);
+    const cols = row.split(",");
 
         return {
             id: cols[0].trim(),
