@@ -114,7 +114,8 @@ async function carregarPerfil() {
             arma: cols[4].trim(),
             build: cols[5].trim(),
             score: cols[6].trim(),
-            mastery: cols[7].trim()
+            mastery: cols[7].trim(),
+            foto: cols[7] ? cols[8].trim() : ""
         };
     });
 
@@ -129,6 +130,7 @@ async function carregarPerfil() {
     // MOSTRAR O PERFIL
     document.getElementById("perfil-content").innerHTML = `
         <div class="perfil-card">
+        <img src="${membro.foto || 'assets/default-avatar.png'}"
             <h2>${membro.nome}</h2>
             <p><strong>Rank:</strong> ${membro.rank}</p>
             <p><strong>Classe:</strong> ${membro.classe}</p>
