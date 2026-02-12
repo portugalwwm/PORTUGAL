@@ -129,8 +129,7 @@ async function carregarPerfil() {
 
     // MOSTRAR O PERFIL
     document.getElementById("perfil-content").innerHTML = `
-        <div class="perfil-card">
-        <img src="${membro.foto || 'assets/default-avatar.png'}"
+        <div class="perfil-card">    
             <h2>${membro.nome}</h2>
             <p><strong>Rank:</strong> ${membro.rank}</p>
             <p><strong>Classe:</strong> ${membro.classe}</p>
@@ -138,6 +137,7 @@ async function carregarPerfil() {
             <p><strong>Build:</strong> ${membro.build}</p>
             <p><strong>Score:</strong> ${membro.score}</p>
             <p><strong>Mastery:</strong> ${membro.mastery}</p>
+            <p>${membro.foto}</p>
         </div>
     `;
 }
