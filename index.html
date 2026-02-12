@@ -356,10 +356,71 @@ async function loadMembers() {
 
 
             loadMembers();
+
+          //js discord
+
+          const CLIENT_ID = "1471459203557359657";
+const REDIRECT_URI = "https://portugalwwm.github.io/PORTUGAL/";
+
+const loginBtn = document.getElementById("discord-login");
+const privateArea = document.getElementById("private-area");
+const authSection = document.getElementById("auth-section");
+const logoutBtn = document.getElementById("logout");
+
+loginBtn.onclick = () => {
+    const url = `https://discord.com/api/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&response_type=token&scope=identify`;
+    window.location.href = url;
+};
+
+window.onload = () => {
+    if (window.location.hash.includes("access_token")) {
+        const params = new URLSearchParams(window.location.hash.substring(1));
+        const token = params.get("access_token");
+        localStorage.setItem("discord_token", token);
+        window.location.hash = "";
+    }
+
+    const savedToken = localStorage.getItem("discord_token");
+    if (savedToken) {
+        verificarUsuario(savedToken);
+    }
+};
+
+async function verificarUsuario(token) {
+    try {
+        const response = await fetch("https://discord.com/api/users/@me", {
+            headers: { Authorization: `Bearer ${token}` }
+        });
+
+        if (!response.ok) throw new Error();
+
+        const user = await response.json();
+
+        authSection.style.display = "none";
+        privateArea.style.display = "block";
+
+        privateArea.innerHTML = `
+            <h2>Área Privada</h2>
+            <p>Bem-vindo, ${user.username} 👑</p>
+            <button id="logout" class="btn">Logout</button>
+        `;
+
+        document.getElementById("logout").onclick = logout;
+
+    } catch {
+        logout();
+    }
+}
+
+function logout() {
+    localStorage.removeItem("discord_token");
+    location.reload();
+}
         </script>
 
 </body>
 </html>
+
 
 
 
