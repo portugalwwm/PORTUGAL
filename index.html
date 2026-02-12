@@ -399,8 +399,7 @@ async function verificarUsuario(token) {
         authSection.style.display = "none";
         privateArea.style.display = "block";
 
-        privateArea.innerHTML = `
-            <h2>Área Privada</h2>
+        privateArea.innerHTML = `           
             <p>Bem-vindo, ${user.username} 👑</p>
             <button id="logout" class="btn">Logout</button>
         `;
@@ -422,6 +421,7 @@ function logout() {
 
 </body>
 </html>
+
 
 
 
